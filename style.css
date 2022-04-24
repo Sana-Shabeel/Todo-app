@@ -1,0 +1,213 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-color);
+  font-family: "Josefin Sans", sans-serif;
+  color: var(--light-grayish-blue);
+
+  /* Dark theme */
+  --bg-color: hsl(235, 21%, 11%);
+  --content-bg: hsl(235, 24%, 19%);
+  --light-grayish-blue: hsl(234, 39%, 85%);
+  --dark-grayish-blue: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue: hsl(237, 14%, 26%);
+  --color: #fff;
+  --bg-image: url(./images/bg-desktop-dark.jpg);
+  --bg-image-small: url(./images/bg-mobile-dark.jpg);
+  --theme-icon: url(./images/icon-sun.svg);
+  /*  <img src="./images/icon-sun.svg" class="theme" alt="sun icon" /> */
+}
+.lightmode {
+  --bg-color: hsl(0, 0%, 98%);
+  --content-bg: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(0, 2%, 35%);
+  --dark-grayish-blue: hsl(237, 68%, 23%);
+  --bg-image: url(./images/bg-desktop-light.jpg);
+  --bg-image-small: url(./images/bg-mobile-light.jpg);
+  --theme-icon: url(./images/icon-moon.svg);
+}
+main {
+  width: min(700px, 100% - 3rem);
+  margin-inline: auto;
+  position: absolute;
+  top: 10rem;
+  left: 1.5rem;
+  right: 1.5rem;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color);
+}
+h1 {
+  font-weight: 700;
+  letter-spacing: 10px;
+  font-size: 2.7em;
+}
+.theme {
+  width: 2rem;
+  height: 2rem;
+  background: var(--theme-icon);
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-desktop {
+  max-width: 100%;
+  width: 100%;
+  min-height: 40vh;
+  display: block;
+  background: var(--bg-image);
+  background-position: center;
+  background-size: cover;
+}
+
+.add-todo-container {
+  height: 6vh;
+  background: var(--content-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  margin-top: 2rem;
+}
+.circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--very-dark-grayish-blue);
+  margin: 20px;
+}
+.add-todo {
+  width: 90%;
+  height: inherit;
+  background: transparent;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--light-grayish-blue);
+  outline: none;
+  border: none;
+  font-family: inherit;
+}
+.todo-list-container {
+  background: var(--content-bg);
+  margin-top: 1rem;
+  border-radius: 3px;
+  padding: 10px 0;
+}
+.todo-list {
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 300;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--very-dark-grayish-blue);
+  position: relative;
+}
+input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  opacity: 0.2;
+}
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  width: 1.21em;
+  height: 1.21em;
+  border: 1px solid var(--dark-grayish-blue);
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+  cursor: pointer;
+}
+input[type="checkbox"]:checked {
+  background: url(/images/icon-check.svg) no-repeat;
+  background-position: center;
+  background-color: #22d3ff;
+  border: none;
+}
+input[type="checkbox"]:hover {
+  border-color: #22d3ff;
+}
+
+.delete-todo {
+  display: none;
+  position: absolute;
+  right: 0;
+  padding-right: 10px;
+}
+.todo-list:hover .delete-todo {
+  display: block;
+  cursor: pointer;
+}
+
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--content-bg);
+  padding: 16px;
+  position: relative;
+}
+.items-left {
+  color: var(--dark-grayish-blue);
+}
+.option-btns {
+  display: flex;
+  gap: 13px;
+}
+.option-btns > button:hover {
+  color: hsl(220, 98%, 61%);
+}
+.clear-btn:hover {
+  color: hsl(220, 98%, 61%);
+}
+/* Genearl styling for some elements */
+button {
+  all: unset;
+  cursor: pointer;
+}
+label::first-letter {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 700px) {
+  .option-btns {
+    display: block;
+  }
+  .delete-todo {
+    display: block;
+  }
+  .add-todo-container {
+    padding: 1rem 0;
+  }
+  .option-btns {
+    width: 100%;
+    height: 6vh;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 4rem;
+    background: var(--content-bg);
+    border-radius: 4px;
+    text-align: center;
+    padding: 1rem;
+  }
+  .option-btns button {
+    margin: 0 1rem;
+  }
+}
+@media screen and (max-width: 370px) {
+  .bg-desktop {
+    max-width: 100%;
+    width: 100%;
+    height: 10vh;
+    background: var(--bg-image-small) no-repeat;
+    background-size: cover;
+  }
+}
