@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const todos = getTodos();
   console.log(todos);
   for (const todo of todos) {
-    console.log(todo);
     addNewTodo(todo);
     todoSection.appendChild(divContainer);
   }
@@ -44,6 +43,8 @@ function addNewTodo(textContent) {
 
   // adding attributes
   divContainer.classList.add("todo-list");
+  divContainer.id = "drag";
+  divContainer.draggable = true;
   span.classList.add("circle-checkbox");
   input.type = "checkbox";
   input.id = id;
@@ -65,6 +66,23 @@ function addNewTodo(textContent) {
     countItemsleft();
   });
   input.addEventListener("change", countItemsleft);
+
+  // drag event
+  divContainer.addEventListener("dragstart", dragStart);
+  divContainer.addEventListener("dragover", dragOver);
+  divContainer.addEventListener("dragenter", dragEnter);
+  divContainer.addEventListener("dragleave", dragLeave);
+
+  divContainer.addEventListener("drop", (e) => {
+    e.preventDefault();
+    const sourceId = e.dataTransfer.getData("text/plain");
+    e.target.insertAdjacentElement(
+      "afterend",
+      document.getElementById(sourceId)
+    );
+
+    console.log(e.target.classList.remove("over"));
+  });
 
   // appending to div container
   divContainer.appendChild(span);
@@ -165,3 +183,28 @@ function toggleThemefunc() {
   document.body.classList.toggle("lightmode");
 }
 toggletheme.addEventListener("click", toggleThemefunc);
+
+// Drag functionalities
+
+function dragStart(e) {
+  e.dataTransfer.setData("text/plain", e.target.id);
+}
+
+function dragOver(e) {
+  e.preventDefault();
+}
+
+// function dragDrop(e) {
+//   e.preventDefault();
+//   const sourceId = e.dataTransfer.getData("text/plain");
+//   e.target.insertAdjacentElement("afterend", document.getElementById(sourceId));
+
+//   this.classList.remove("over");
+// }
+
+function dragEnter() {
+  this.classList.add("over");
+}
+function dragLeave() {
+  this.classList.remove("over");
+}
