@@ -176,6 +176,10 @@ label::first-letter {
   text-transform: uppercase;
 }
 
+.over {
+  background: #000;
+}
+
 @media screen and (max-width: 700px) {
   .option-btns {
     display: block;
