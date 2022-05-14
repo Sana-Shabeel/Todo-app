@@ -68,22 +68,18 @@ function addNewTodo(textContent) {
   input.addEventListener("change", countItemsleft);
 
   // drag event
-  divContainer.addEventListener("dragstart", dragStart);
   divContainer.addEventListener("dragover", dragOver);
   divContainer.addEventListener("dragenter", dragEnter);
   divContainer.addEventListener("dragleave", dragLeave);
 
-  divContainer.addEventListener("drop", (e) => {
-    e.preventDefault();
-    const sourceId = e.dataTransfer.getData("text/plain");
-    e.target.insertAdjacentElement(
-      "afterend",
-      document.getElementById(sourceId)
-    );
-
-    console.log(e.target.classList.remove("over"));
+  divContainer.addEventListener("dragend", (e) => {
+    const removeClassList = document.querySelectorAll(".todo-list");
+    removeClassList.forEach((item) => {
+      item.classList.remove("over");
+    });
   });
 
+  new Sortable(todoSection);
   // appending to div container
   divContainer.appendChild(span);
   divContainer.appendChild(input);
@@ -186,21 +182,9 @@ toggletheme.addEventListener("click", toggleThemefunc);
 
 // Drag functionalities
 
-function dragStart(e) {
-  e.dataTransfer.setData("text/plain", e.target.id);
-}
-
 function dragOver(e) {
   e.preventDefault();
 }
-
-// function dragDrop(e) {
-//   e.preventDefault();
-//   const sourceId = e.dataTransfer.getData("text/plain");
-//   e.target.insertAdjacentElement("afterend", document.getElementById(sourceId));
-
-//   this.classList.remove("over");
-// }
 
 function dragEnter() {
   this.classList.add("over");
