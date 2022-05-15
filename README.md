@@ -22,9 +22,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://todo-app-ab9.netlify.app/)
-
-## My process
+- Live Site URL: [Deployed on netlify](https://todo-app-ab9.netlify.app/)
 
 ### Built with
 
@@ -33,6 +31,7 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Local storage
+- Sortable js for drag and drop
 
 ## Author
 
